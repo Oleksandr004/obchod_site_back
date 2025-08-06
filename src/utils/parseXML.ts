@@ -21,9 +21,7 @@ export const loadProducts = async (): Promise<Product[]> => {
 				.filter((f) => f.toLowerCase().startsWith('image'))
 
 			// Подготовим URL-ы для фронта
-			const baseUrl =
-				process.env.BASE_URL || 'https://obchod-site-front.vercel.app'
-			images = files.map((f) => `${baseUrl}/obrazky/${id}/${f}`)
+			images = files.map((f) => `/obrazky/${id}/${f}`)
 		}
 
 		// Главное изображение — первый из списка (если есть)
