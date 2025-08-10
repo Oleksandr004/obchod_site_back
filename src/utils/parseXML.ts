@@ -11,7 +11,6 @@ export const loadProducts = async (): Promise<Product[]> => {
 	return items.map((item: any): Product => {
 		const id = item.sloupec01?.[0] ?? ''
 
-		// Соберём массив изображений из папки public/obrazky/{id}
 		const obrazkyDir = path.join(__dirname, `../../public/obrazky/${id}`)
 		let images: string[] = []
 
@@ -20,11 +19,9 @@ export const loadProducts = async (): Promise<Product[]> => {
 				.readdirSync(obrazkyDir)
 				.filter((f) => f.toLowerCase().startsWith('image'))
 
-			// Подготовим URL-ы для фронта
 			images = files.map((f) => `/obrazky/${id}/${f}`)
 		}
 
-		// Главное изображение — первый из списка (если есть)
 		const image = images[0] ?? ''
 
 		return {
@@ -46,8 +43,8 @@ export const loadProducts = async (): Promise<Product[]> => {
 			desc2: item.sloupec14?.[0] ?? '',
 			desc3: item.sloupec15?.[0] ?? '',
 			desc4: item.sloupec16?.[0] ?? '',
-			image, // ✔️ уже нормальный путь
-			images, // ✔️ массив путей
+			image,
+			images,
 		}
 	})
 }

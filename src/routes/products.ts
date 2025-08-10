@@ -20,6 +20,7 @@ router.get('/', async (req, res) => {
 	const products = await loadProducts()
 
 	const filtered = products.filter((p) => {
+		if (!p.image || p.image.trim() === '') return false
 		if (category && p.category !== category) return false
 		if (
 			search &&
